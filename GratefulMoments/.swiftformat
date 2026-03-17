@@ -1,3 +1,10 @@
+--exclude Pods
+--exclude Carthage
+--exclude .build
+--exclude DerivedData
+--exclude *.xcodeproj
+--exclude *.xcworkspace
+
 --swift-version 6.2
 
 --indent 4
