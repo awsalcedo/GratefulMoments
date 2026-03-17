@@ -52,6 +52,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA0801032F6262DD00E37680 /* Build configuration list for PBXNativeTarget "GratefulMoments" */;
 			buildPhases = (
+				FA9B50BA2F68EB4500D6B94E /* SwiftFormat */,
 				FA0800F42F6262DB00E37680 /* Sources */,
 				FA0800F52F6262DB00E37680 /* Frameworks */,
 				FA0800F62F6262DB00E37680 /* Resources */,
@@ -113,6 +114,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA9B50BA2F68EB4500D6B94E /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif command -v swiftformat >/dev/null 2>&1; then\n    echo \"Running SwiftFormat...\"\n    swiftformat \"$SRCROOT\" --quiet\nelse\n    echo \"warning: SwiftFormat not installed. Install it with 'brew install swiftformat'\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA0800F42F6262DB00E37680 /* Sources */ = {
