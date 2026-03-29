@@ -38,7 +38,6 @@ struct MomentEntryView: View {
                         } else {
                             isShowingCancelConfirmation = true
                         }
-                    
                     }
                     .confirmationDialog("Discard Moment", isPresented: $isShowingCancelConfirmation) {
                         Button("Discard Moment", role: .destructive) {
