@@ -58,8 +58,11 @@ struct MomentEntryView: View {
                         do {
                             try dataContainer.context.save()
                             dismiss()
-                        } catch { }
+                        } catch {
+                            
+                        }
                     }
+                    .disabled(title.isEmpty)
                 }
             }
         }
