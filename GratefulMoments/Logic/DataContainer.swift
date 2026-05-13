@@ -22,6 +22,7 @@ import SwiftUI
 @MainActor
 class DataContainer {
     let modelContainer: ModelContainer
+    var badgeManager: BadgeManager
 
     var context: ModelContext {
         modelContainer.mainContext
@@ -29,13 +30,18 @@ class DataContainer {
 
     init(includeSampleMoments: Bool = false) {
         let schema = Schema([
-            Moment.self
+            Moment.self,
+            Badge.self
         ])
 
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: includeSampleMoments)
 
         do {
             modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            badgeManager = BadgeManager(modelContainer: modelContainer)
+            
+            /// Carga todas las insignias cada vez que se crea el DataContainer. Este método se ejecuta cada vez que se inicia la aplicación. loadBadgesIfNeeded comprueba si existen insignias y evita cargar duplicados. Podrías colocar esta lógica en DataContainer, pero mantenerla en BadgeManager reduce las responsabilidades de DataContainer.
+            try badgeManager.loadBadgesIfNeeded()
 
             if includeSampleMoments {
                 loadSampleMoments()
