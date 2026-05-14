@@ -9,7 +9,10 @@ import Foundation
 import SwiftUI
 
 /// BadgeDetails contendrá la información que mostrarás para cada insignia.
-/// Asigne a BadgeDetails un valor entero sin procesar y declare que cumple con la clase Codable para que el modelo pueda guardarse posteriormente. Luego, declare que cumple con la clase CaseIterable para que el resto de su código pueda acceder a todos sus casos.
+/// Asigne a BadgeDetails un valor entero sin procesar osea Int  para tener un Raw Value Type, es decir, cada case tendrá asociado automáticamente un entero que empieza en cero, esto sirve para: ordenar enums, guardar valores en base de datos, persistencia, comunicación con APIs, comparaciones,
+/// prioridades, índices, searialización.
+/// y declare que cumple con la clase Codable para que el modelo pueda guardarse posteriormente, es decir, que puedde convertirse a JSON y también recostruirse desde JSON.
+/// Luego, declare que cumple con la clase CaseIterable para que el resto de su código pueda acceder a todos sus casos, sin CaseIterable no se puede hacer esto BadgeDetails.allCases
 enum BadgeDetails: Int, Codable, CaseIterable {
     case firstEntry
     case fiveStars
