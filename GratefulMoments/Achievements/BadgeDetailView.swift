@@ -24,6 +24,12 @@ struct BadgeDetailView: View {
                 .font(.body)
             
             Spacer()
+            
+            /// Muestra la marca de tiempo de las insignias desbloqueadas. Recuerda que las marcas de tiempo solo aparecen en las insignias desbloqueadas.
+            if let timestamp = badge.timestamp {
+                Text(timestamp, style: .date)
+                    .font(.caption2.bold())
+            }
         }
         .padding()
         .frame(width: 320, height: 410)
