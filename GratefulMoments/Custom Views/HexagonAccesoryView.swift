@@ -12,15 +12,40 @@ struct HexagonAccesoryView: View {
     let hexagonLayout: HexagonLayout
     
     var body: some View {
+        
+        NavigationLink {
+            if badges.count == 1 {
+                BadgeDetailView(badge: badges[0])
+            } else {
+                MomentDetailView(moment: moment)
+            }
+        } label: {
+            badgeView
+        }
+    }
+    
+    private var badgeView: some View {
         Group {
-            if let badge = badges.first {
+            if badges.count > 1 {
+                Text("+\(badges.count)")
+                    .bold()
+                    .frame(width: size * 0.5, height: size * 0.5)
+                    .padding(8)
+                    .background {
+                        Image("Blank")
+                            .resizable()
+                            .frame(width: size, height: size)
+                            .shadow(radius: 2)
+                    }
+                    .foregroundStyle(.gray)
+            } else if let badge = badges.first {
                 Image(badge.details.image)
                     .resizable()
                     .frame(width: size, height: size)
+                    .shadow(radius: 2)
             }
         }
         .offset(y: yOffset)
-        
     }
     
     private var yOffset: CGFloat {
@@ -42,7 +67,12 @@ struct HexagonAccesoryView: View {
     }
 }
 
-#Preview {
+#Preview("Single badge") {
     MomentHexagonView(moment: .sample, layout: .large)
+        .sampleDataContainer()
+}
+
+#Preview("Multiple badges") {
+    MomentHexagonView(moment: .imageSample, layout: .large)
         .sampleDataContainer()
 }
