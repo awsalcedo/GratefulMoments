@@ -27,15 +27,27 @@ struct AchievementsView: View {
     }
     
     private var contentStack: some View {
-        VStack {
-            header("Your Badges")
-            ForEach(sortedUnlockedBadges) { badge in
-                Text(badge.details.title)
+        VStack(alignment: .leading) {
+            if !unlockedBadges.isEmpty {
+                header("Your Badges")
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(sortedUnlockedBadges) { badge in
+                            UnlockedBadgeView(badge: badge)
+                        }
+                    }
+                }
+                /// Usa el modificador .scrollClipDisabled para evitar que se recorten cuando las insignias se desplacen más allá de los límites de la vista.
+                /// Al permitir que el ScrollView horizontal se extienda más allá del borde de la pantalla, indicas a los usuarios que pueden desplazarse para ver más.
+                .scrollClipDisabled()
+                .scrollIndicators(.hidden)
             }
             
-            header("Locked Badges")
-            ForEach(sortedLockedBadges) { badge in
-                Text(badge.details.title)
+            if !lockedBadges.isEmpty {
+                header("Locked Badges")
+                ForEach(sortedLockedBadges) { badge in
+                    LockedBadgeView(badge: badge)
+                }
             }
         }
         .padding()
