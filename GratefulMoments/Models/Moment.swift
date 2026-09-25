@@ -15,12 +15,15 @@ class Moment {
     var note: String
     var imageData: Data?
     var timestamp: Date
+    var badges: [Badge]
 
     init(title: String, note: String, imageData: Data? = nil, timestamp: Date = .now) {
         self.title = title
         self.note = note
         self.imageData = imageData
         self.timestamp = timestamp
+        /// En Moment, declara una variable para las insignias asignadas. Esta relación es la inversa de Badge.moment. Estás estableciendo una relación de uno a muchos. Las insignias solo se pueden obtener con un momento, mientras que un momento puede desbloquear varias insignias.
+        self.badges = []
     }
 
     /// propiedad que convierta los datos de la imagen en un objeto UIImage para su visualización, para eso se importa
